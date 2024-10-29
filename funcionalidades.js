@@ -1,4 +1,4 @@
-import movieManager from "./arreglosActorMovies.js"
+import {administrador,movieManager} from "./arreglosActorMovies.js"
 import prompt_sync from 'prompt-sync';
 
 
@@ -229,6 +229,7 @@ function showAwardsByMovie() {
         console.error(`No se encontró la película con el título "${title}".`);
     }
 }
+//funciones de administrador
 //agregar una pelicula
 function addMovie (){
     const title = prompt("Ingrese el título de la película:");
@@ -250,7 +251,7 @@ function addMovie (){
     console.log(`Película "${title}" agregada con éxito.`);
     console.table("Detalles de la película agregada:", newMovie);
 }
-//funciones de administrador 
+
 //agregar un actor a una pelicula
 function addActorMovie() {
     const title = prompt("Ingrese el título de la película:");
@@ -415,5 +416,152 @@ function removeMovie() {
     }
 }
     
-    
+//funciones para editar administradores
+//crear un nuevo administrador
+function addAdmin() {
+    const id = Number(prompt("Ingrese el ID del administrador:"));
+    const name = prompt("Ingrese el nombre del administrador:");
 
+    
+    if (administrador.find(admin => admin.id === id)) {
+        console.error(`El ID ${id} ya está en uso.`);
+    } else {
+        administrador.push({ id, name });
+        console.log(`Administrador "${name}" agregado correctamente.`);
+        console.table(administrador); 
+    }
+}
+//eliminar admisnitrador
+function removeAdmin() {
+    const id = Number(prompt("Ingrese el ID del administrador que desea eliminar:"));
+
+    
+    const index = administrador.findIndex(admin => admin.id === id);
+
+    // Verificar si se encontró el administrador
+    if (index !== -1) {
+        const removedAdmin = administrador.splice(index, 1);
+        console.log(`Administrador "${removedAdmin[0].name}" eliminado correctamente.`);
+        console.table(administrador); 
+    } else {
+        console.log(`No se encontró un administrador con el ID ${id}.`);
+    }
+}
+//editar administrador
+function editAdmin() {
+    const id = Number(prompt("Ingrese el ID del administrador que desea editar:"));
+
+    const admin = administrador.find(admin => admin.id === id);
+
+    if (admin) {
+        const newName = prompt("Ingrese el nuevo nombre del administrador:");
+        admin.name = newName; 
+        console.log(`Administrador con ID ${id} actualizado a "${newName}".`);
+        console.table(administrador); 
+        console.error(`No se encontró un administrador con el ID ${id}.`);
+    }
+}
+//auntenticar administrador para poder acceder al menu
+function autenticarAdmin() {
+    const id = Number(prompt("Ingrese su ID de administrador:"));
+    const name = prompt("Ingrese su nombre de administrador:");
+
+    
+    const admin = administrador.find(admin => admin.id === id && admin.name === name);
+
+    if (admin) {
+        console.log(`Bienvenido, ${admin.name}!`);
+        adminMain();
+    } else {
+        console.error("Credenciales incorrectas. Acceso denegado.");
+    }
+}
+//menu principal para administradores
+function adminMain() {
+    console.log("Menú de administración:");
+    console.log("1. Gestionar Administradores");
+    console.log("2. Gestionar Películas");
+    console.log("3. Salir");
+
+    const option = prompt("Seleccione una opción:");
+
+    switch (option) {
+        case '1':
+            adminSubMenu();
+            break;
+        case '2':
+            movieSubMenu();
+            break;
+        case '3':
+            console.log("Saliendo del menú.");
+            break;
+        default:
+            console.error("Opción no válida.");
+            break;
+    }
+   
+    }
+//menu para editar administradores
+    function adminSubMenu(){
+        console.log("Submenú de Administradores:");
+        console.log("1. Agregar administrador");
+        console.log("2. Eliminar administrador");
+        console.log("3. Editar administrador");
+        console.log("4. Volver al menú principal");
+    
+        const option = prompt("Seleccione una opción:");
+    
+        switch (option) {
+            case '1':
+                addAdmin();
+                break;
+            case '2':
+                removeAdmin();
+                break;
+            case '3':
+                editAdmin();
+                break;
+            case '4':
+                adminMain(); 
+                break;
+            default:
+                console.log("Opción no válida.");
+                break;
+        }
+    }
+//menu para edicion de peliculas por administradores
+    function movieSubMenu() {
+        console.log("Submenú de Películas:");
+        console.log("1. Agregar película");
+        console.log("2. Editar película: añadir actores, premios, modificar genero o titulo");
+        console.log("3. Eliminar película");
+        console.log("4. Eliminar actor de película");
+        console.log("5. Eliminar premio de película");
+        console.log("6. Volver al menú principal");
+    
+        const option = prompt("Seleccione una opción:");
+    
+        switch (option) {
+            case '1':
+                addMovie(); 
+                break;
+            case '2':
+                editMovie(); 
+                break;
+            case '3':
+                removeMovie(); 
+                break;
+            case '4':
+                removeActor(); 
+           
+            case '5':
+                removeAwardFromMovie(); 
+                break;
+            case '6':
+                adminMain(); 
+                break;
+            default:
+                console.log("Opción no válida.");
+                break;
+        }
+    }
