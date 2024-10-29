@@ -1,18 +1,11 @@
-const actors = [
-    { id: 1, name: "Christopher Nolan" },
-    { id: 2, name: "Johnny Depp" },
-    { id: 3, name: "Anthony Hopkins" },
-    { id: 4, name: "Chris Evans" },
-    { id: 5, name: "Yannick Fassbender" },
-    { id: 6, name: "Ryan Reynolds" },
-    { id: 7, name: "Frank Capra" },
-    { id: 8, name: "Laurence Fishburne" },
-    { id: 9, name: "Quentin Tarantino" },
-    { id: 10, name: "Anurag Kashyap" }
+const administrador = [
+    { id: 22333, name: "Justina2021" },
+    { id: 22334, name: "Natalia83" },
+
 ];
 
 
-const movieManager= { movie: [
+const movieManager= { movieDatabase: [
    { title: "Inception",
     genre: "Thriller",
     actors: ["Christopher Nolan", "Johnny Depp"],
@@ -81,43 +74,8 @@ const movieManager= { movie: [
    },
 
 ], 
-addMovie: function(title, genre, actors) {
-        const movie = {
-            title: title,
-            genre: genre,
-            actors: actors,
-            awards: [],
-            getAwardsCount: function() {
-                return this.awards.length;
-            },
-            addAward: function(award) {
-                this.awards.push(award);
-            }
-        };
-        this.movies.push(movie);
-    },
-    deleteMovie: function(title){
-        const index = this.movies.findIndex(movie => movie.title === title);
-        if(index!== -1) {
-            this.movies.splice(index, 1);
-        }
-    },
-    addActor: function(title,actor){
-        const movie = this.movies.find(movie => movie.title === title);
-        if(movie){
-            movie.actors.push(actor);
-        }
-    },
-    editMovie: function(title){
-        const index = this.movies.findIndex(movie => movie.title === title);
-        if(index!== -1) {
-            const newMovie = prompt("Ingrese los nuevos datos de la pelicula");
-            this.movies[index] = newMovie;
-        }
-    }
+
 }
 
 
-//funcion para agregar peliculas sea desde el administrador
-
-movieManager.addMovie("The Godfather Part II", "Crime", ["Francis Ford Coppola", "Al Pacino"]);
+export {administrador, movieManager}
