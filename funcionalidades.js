@@ -6,6 +6,8 @@ const prompt = prompt_sync();
 //funciones para los visitadores
 //buscar pelicula
 
+
+
 function searchMovie() {
     const title = prompt("Ingrese el título de la película que desea buscar:");
    const movie = movieManager.movieDatabase.find(movie => movie.title.toLowerCase() === title.toLowerCase());
@@ -74,7 +76,7 @@ function AllMoviesByName() {
     console.table(movieTitles);
 }
 //funcion que solo muestre todos los generos disponibles en la database
-function  allgenres(){
+function  allGenres(){
     const genres = [];
     for (let i = 0; i < movieManager.movieDatabase.length; i++) {
         const genre = movieManager.movieDatabase[i].genre;
@@ -229,6 +231,64 @@ function showAwardsByMovie() {
         console.error(`No se encontró la película con el título "${title}".`);
     }
 }
+//////////////////////////////////
+//menu para usuarios visitantes
+function showUserMenu() {
+    console.log("Menú principal:");
+    console.log("1. Buscar película por nombre");
+    console.log("2. Buscar película por actor");
+    console.log("3. Buscar película por género");
+    console.log("4. Ver listado de todas las películas");
+    console.log("5. Ver listado de géneros");
+    console.log("6. Ver listado de actores");
+    console.log("7. Ver listado de premios");
+    console.log("8. Ver película más premiada");
+    console.log("8. Ver películas más premiadas");
+    console.log("10. Salir");
+
+    const option = prompt("Seleccione una opción:");
+
+    switch (option) {
+        case '1':
+            searchMovie();
+            break;
+        case '2':
+            
+            searchMoviesByActor();
+            break;
+        case '3':
+            
+            searchMoviesByGenre(); 
+            break;
+        case '4':
+            allMovies();
+            break;
+        case '5':
+            allGenres(); 
+            break;
+        case '6':
+            showAllActors();
+            break;
+        case '7':
+            allAwards(); 
+        case '8':
+            showMostAwardedMovie()
+            break;
+        case '9':
+            showTop10MostAwardedMovies();
+            break;    
+        case '10':
+            console.log("Saliendo del menú.");
+            break;
+        default:
+            console.log("Opción no válida.");
+            break;
+    }
+}
+
+
+
+//////////////////////////////////
 //funciones de administrador
 //agregar una pelicula
 function addMovie (){
@@ -565,3 +625,34 @@ function adminMain() {
                 break;
         }
     }
+
+
+export{ addMovie,
+    addAwardToMovie,
+    addActor,
+    editMovie,
+    removeActor,
+    removeAwardFromMovie,
+    removeMovie,
+    addAdmin,
+    editAdmin,
+    removeAdmin,
+    autenticarAdmin,
+    adminMain,
+    movieSubMenu,
+    searchMovie,
+    searchMovieByAdward,
+    searchMoviesByActor,
+    searchMoviesByGenre,
+    allAwards,
+    allGenres,
+    allMovies,
+    showAllActors,
+    showUserMenu,
+    showTop10MostAwardedMovies,
+    showTop5MostAwardedMovies,
+    showMostAwardedMovie,
+    showMoviesOrderedByAwardsByGenre
+
+}
+   
