@@ -234,65 +234,65 @@ function showAwardsByMovie() {
 //////////////////////////////////
 //menu para usuarios visitantes
 function showUserMenu() {
+    let option;
+    do {
+        console.log("Menú principal:");
+        console.log("1. Buscar película por nombre");
+        console.log("2. Buscar película por actor");
+        console.log("3. Buscar película por género");
+        console.log("4. Ver listado de todas las películas");
+        console.log("5. Ver listado de géneros");
+        console.log("6. Ver listado de actores");
+        console.log("7. Ver listado de premios");
+        console.log("8. Ver película más premiada");
+        console.log("9. Ver películas más premiadas");
+        console.log("10. Ver películas por premio");
+        console.log("11. Salir");
 
-    
-    console.log("Menú principal:");
-    console.log("1. Buscar película por nombre");
-    console.log("2. Buscar película por actor");
-    console.log("3. Buscar película por género");
-    console.log("4. Ver listado de todas las películas");
-    console.log("5. Ver listado de géneros");
-    console.log("6. Ver listado de actores");
-    console.log("7. Ver listado de premios");
-    console.log("8. Ver película más premiada");
-    console.log("9. Ver películas más premiadas");
-    console.log("10.Ver peliculas por premio")
-    console.log("0. Salir");
+        option = prompt("Seleccione una opción:");
 
-    const option = prompt("Seleccione una opción:");
-
-    switch (option) {
-        case '1':
-            searchMovie();
-            break;
-        case '2':
-            
-            searchMoviesByActor();
-            break;
-        case '3':
-            
-            searchMoviesByGenre(); 
-            break;
-        case '4':
-            allMovies();
-            break;
-        case '5':
-            allGenres(); 
-            break;
-        case '6':
-            showAllActors();
-            break;
-        case '7':
-            allAwards(); 
-        case '8':
-            showMostAwardedMovie()
-            break;
-        case '9':
-            showTop10MostAwardedMovies();
-            break;    
-
-        case '10':
-            searchMovieByAdward();
-            break;
-        case '0':
-            console.log("Saliendo del menú.");
-            break;
-        default:
-            console.log("Opción no válida.");
-            break;
-    }
-   
+        switch (option) {
+            case '1':
+                searchMovie();
+                break;
+            case '2':
+                searchMoviesByActor();
+                break;
+            case '3':
+                searchMoviesByGenre(); 
+                break;
+            case '4':
+                allMovies();
+                break;
+            case '5':
+                allGenres(); 
+                break;
+            case '6':
+                showAllActors();
+                break;
+            case '7':
+                allAwards();
+                break;
+            case '8':
+                showMostAwardedMovie();
+                break;
+            case '9':
+                showTop10MostAwardedMovies();
+                break;
+            case '10':
+                searchMovieByAward();
+                break;
+            case '11':
+                console.log("Saliendo del menú.");
+                break;
+            default:
+                console.log("Opción no válida.");
+                break;
+        }
+    } while (option != '11');
 }
+
+
 
 
 
@@ -546,13 +546,14 @@ function autenticarAdmin() {
 }
 //menu principal para administradores
 function adminMain() {
-  
+let option;
+  do {
     console.log("Menú de administración:");
     console.log("1. Gestionar Administradores");
     console.log("2. Gestionar Películas");
     console.log("0. Salir");
 
-    const option = prompt("Seleccione una opción:");
+    option = prompt("Seleccione una opción:");
 
     switch (option) {
         case '1':
@@ -562,25 +563,26 @@ function adminMain() {
             movieSubMenu();
             break;
         case '0':
-            console.log("Saliendo del menú.");3
-            break;
+            console.log("Saliendo del menú.");
+            return;
+           
         default:
             console.error("Opción no válida.");
             break;
     }
-   
+      } while (option != '0');
     }
 //menu para editar administradores
     function adminSubMenu(){
-     
-       
+     let option;
+       do{
         console.log("Submenú de Administradores:");
         console.log("1. Agregar administrador");
         console.log("2. Eliminar administrador");
         console.log("3. Editar administrador");
         console.log("0. Volver al menú principal")
     
-        const option = prompt("Seleccione una opción:");
+        option = prompt("Seleccione una opción:");
     
         switch (option) {
             case '1':
@@ -593,18 +595,18 @@ function adminMain() {
                 editAdmin();
                 break;
             case '0':
-                adminMain(); 
-                break;
+               return; 
+                
             default:
                 console.log("Opción no válida.");
                 break;
         }
-    
-    }
+    } while (option != '0');
+}
 //menu para edicion de peliculas por administradores
     function movieSubMenu() {
-       
-       
+    let option; 
+       do{
         console.log("Submenú de Películas:");
         console.log("1. Agregar película");
         console.log("2. Editar película: añadir actores, premios, modificar genero o titulo");
@@ -613,7 +615,7 @@ function adminMain() {
         console.log("5. Eliminar premio de película");
         console.log("0. Volver al menú principal");
     
-        const option = prompt("Seleccione una opción:");
+        option = prompt("Seleccione una opción:");
     
         switch (option) {
             case '1':
@@ -627,6 +629,7 @@ function adminMain() {
                 break;
             case '4':
                 removeActor(); 
+                break;
            
             case '5':
                 removeAwardFromMovie(); 
@@ -638,7 +641,7 @@ function adminMain() {
                 console.log("Opción no válida.");
                 break;
         }
-    
+    } while (option != '0');
     }
 
 
