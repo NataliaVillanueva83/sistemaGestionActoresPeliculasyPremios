@@ -235,7 +235,7 @@ function showAwardsByMovie() {
 //menu para usuarios visitantes
 function showUserMenu() {
 
-    do{
+    
     console.log("Menú principal:");
     console.log("1. Buscar película por nombre");
     console.log("2. Buscar película por actor");
@@ -291,7 +291,7 @@ function showUserMenu() {
             console.log("Opción no válida.");
             break;
     }
-    } while (option != '0');
+   
 }
 
 
@@ -534,7 +534,7 @@ function autenticarAdmin() {
     const id = Number(prompt("Ingrese su ID de administrador:"));
     const name = prompt("Ingrese su nombre de administrador:");
 
-    
+    0
     const admin = administrador.find(admin => admin.id === id && admin.name === name);
 
     if (admin) {
@@ -572,15 +572,15 @@ function adminMain() {
     }
 //menu para editar administradores
     function adminSubMenu(){
-        let option;
-        do{
+     
+       
         console.log("Submenú de Administradores:");
         console.log("1. Agregar administrador");
         console.log("2. Eliminar administrador");
         console.log("3. Editar administrador");
-        console.log("0. Volver al menú principal");
+        console.log("0. Volver al menú principal")
     
-        option = prompt("Seleccione una opción:");
+        const option = prompt("Seleccione una opción:");
     
         switch (option) {
             case '1':
@@ -599,12 +599,12 @@ function adminMain() {
                 console.log("Opción no válida.");
                 break;
         }
-    } while (option != '0');
+    
     }
 //menu para edicion de peliculas por administradores
     function movieSubMenu() {
-        let option
-        do{
+       
+       
         console.log("Submenú de Películas:");
         console.log("1. Agregar película");
         console.log("2. Editar película: añadir actores, premios, modificar genero o titulo");
@@ -638,7 +638,7 @@ function adminMain() {
                 console.log("Opción no válida.");
                 break;
         }
-    }while (option != '0');
+    
     }
 
 

@@ -25,7 +25,8 @@ import{ addMovie,
     showTop10MostAwardedMovies,
     showTop5MostAwardedMovies,
     showMostAwardedMovie,
-    showMoviesOrderedByAwardsByGenre} from "./funcionalidades.js"
+    showMoviesOrderedByAwardsByGenre,
+    sortMoviesByAwards} from "./funcionalidades.js"
 const prompt = prompt_sync();
 
 
@@ -56,7 +57,7 @@ const prompt = prompt_sync();
                     console.log("Opción no válida. Intente nuevamente.");
                     break;
             }
-        } while (option !== '0');
+        } while (option != '0');
     }
     
    
